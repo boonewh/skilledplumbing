@@ -25,10 +25,63 @@ body {
     z-index: 1000;
 }
 
+.navbar2 {
+    background: #fff;
+    padding: 1rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    width: 100%;
+}
+
 .logo h1 {
     color: black;
-    font-size: 1.8rem;
+    font-size: 2rem;
+    font-family: Quantico;
 }
+
+.logo2 h1 {
+    color: black;
+    font-size: 2rem;
+    font-family: 'Eagle Lake';
+}
+.logo3 h1 {
+    color: black;
+    font-size: 2rem;
+    font-family: Lugrasimo;
+}
+.logo4 h1 {
+    color: black;
+    font-size: 2rem;
+    font-family: 'Black Ops One';
+}
+.logo5 h1 {
+    color: black;
+    font-size: 2rem;
+    font-family: Aldrich;
+}
+.logo6 h1 {
+    color: black;
+    font-size: 2rem;
+    font-family: 'Nova Cut';
+}
+.logo7 h1 {
+    color: black;
+    font-size: 2rem;
+    font-family: 'Diplomata SC';
+}
+.logo8 h1 {
+    color: black;
+    font-size: 2rem;
+    font-family: 'Pirata One';
+}
+.logo9 h1 {
+    color: black;
+    font-size: 2rem;
+    font-family: Damion;
+}
+
 
 .nav-links {
     display: flex;
