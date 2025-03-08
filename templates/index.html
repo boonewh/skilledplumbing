@@ -1,0 +1,66 @@
+
+{% extends "base.html" %}
+{% block content %}
+        <section id="hero">
+            <div class="hero-content">
+                <h1>Expert Water Heater Installation</h1>
+                <p>Professional installation, repair, and replacement services</p>
+                <div class="cta-buttons">
+                    <a href="tel:432-553-2702" class="cta-primary">Call Now: (432) 553-2702</a>
+                    <a href="#quote" class="cta-secondary">Get Free Quote</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="features">
+            <div class="feature-container">
+                <div class="feature-box">
+                    <i class="fas fa-certificate"></i>
+                    <h3>Licensed & Insured</h3>
+                    <p>Fully certified professionals</p>
+                </div>
+                <div class="feature-box">
+                    <i class="fas fa-clock"></i>
+                    <h3>Easy Process</h3>
+                    <p>Schedule appointment online or call us</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="services">
+            <h2>Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <img src="{{ url_for('static', filename='images/traditional.jpg') }}" alt="Traditional Water Heater">
+                    <h3>Traditional Water Heaters</h3>
+                    <p>Expert installation of standard tank water heaters</p>
+                </div>
+                <div class="service-card">
+                    <img src="{{ url_for('static', filename='images/tankless.jpg') }}" alt="Tankless Water Heater">
+                    <h3>Tankless Systems</h3>
+                    <p>Energy-efficient tankless water heater solutions</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="quote" class="quote-section">
+            <div class="quote-container">
+                <h2>Get Your Free Quote</h2>
+                <form class="quote-form">
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" placeholder="Phone Number" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Email Address" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Tell us about your water heater needs"></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Request Quote</button>
+                </form>
+            </div>
+        </section>
+{% endblock %}
