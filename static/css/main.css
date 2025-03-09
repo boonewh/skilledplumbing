@@ -38,50 +38,8 @@ body {
 .logo h1 {
     color: black;
     font-size: 2rem;
-    font-family: Quantico;
-}
-
-.logo2 h1 {
-    color: black;
-    font-size: 2rem;
-    font-family: 'Eagle Lake';
-}
-.logo3 h1 {
-    color: black;
-    font-size: 2rem;
-    font-family: Lugrasimo;
-}
-.logo4 h1 {
-    color: black;
-    font-size: 2rem;
-    font-family: 'Black Ops One';
-}
-.logo5 h1 {
-    color: black;
-    font-size: 2rem;
     font-family: Aldrich;
 }
-.logo6 h1 {
-    color: black;
-    font-size: 2rem;
-    font-family: 'Nova Cut';
-}
-.logo7 h1 {
-    color: black;
-    font-size: 2rem;
-    font-family: 'Diplomata SC';
-}
-.logo8 h1 {
-    color: black;
-    font-size: 2rem;
-    font-family: 'Pirata One';
-}
-.logo9 h1 {
-    color: black;
-    font-size: 2rem;
-    font-family: Damion;
-}
-
 
 .nav-links {
     display: flex;
@@ -341,7 +299,7 @@ footer {
 }
 
 .services-hero {
-    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/api/placeholder/1920/400');
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7));
     background-size: cover;
     background-position: center;
     color: white;

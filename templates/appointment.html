@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Appointment Scheduler</title>
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+</head>
+<body>
+
+    <h2>Schedule an Appointment</h2>
+    <div id="calendar"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                events: '/api/appointments',  // Fetch slots from Flask API
+                eventClick: function (info) {
+                    if (info.event.title === "Available Slot") {
+                        let name = prompt("Enter your name to book this appointment:");
+                        if (name) {
+                            $.ajax({
+                                url: '/book',
+                                method: 'POST',
+                                contentType: 'application/json',
+                                data: JSON.stringify({id: info.event.id, name: name}),
+                                success: function (response) {
+                                    if (response.status === 'success') {
+                                        alert("Appointment booked successfully!");
+                                        calendar.refetchEvents();  // Refresh calendar
+                                    } else {
+                                        alert("Error booking appointment.");
+                                    }
+                                }
+                            });
+                        }
+                    } else {
+                        alert("This slot is already booked.");
+                    }
+                }
+            });
+            calendar.render();
+        });
+    </script>
+
+</body>
+</html>
