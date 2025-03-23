@@ -14,25 +14,20 @@ body {
 /* Navigation */
 .navbar {
     background: #fff;
-    padding: 1rem 5%;
     display: flex;
-    justify-content: space-between;
     align-items: center;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
+    gap: 2rem;
 }
 
-.navbar2 {
-    background: #fff;
-    padding: 1rem 5%;
+.center-nav {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    width: 100%;
+    margin: auto;
+    width: 95%;
 }
 
 .logo h1 {
@@ -44,20 +39,30 @@ body {
 .nav-links {
     display: flex;
     list-style: none;
+    flex: 1;
+    justify-content: center;
+}
+
+.nav-phone {
+    white-space: nowrap;
+}
+
+.nav-phone a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    font-size: 1.5rem;
 }
 
 .nav-links li a {
     color: #333;
     text-decoration: none;
     padding: 0.5rem 1rem;
-    transition: color 0.3s ease;
+    transition: color 0.5s ease, font-weight 0.5s ease;
+    font-size: 1.5rem;
 }
 
 .nav-links li a:hover {
-    color: black;
-}
-
-.nav-links li a.active {
     color: black;
     font-weight: bold;
 }
@@ -94,7 +99,7 @@ body {
     flex-wrap: wrap;
 }
 
-.cta-primary, .cta-secondary {
+.cta-primary, .cta-appt {
     padding: 1rem 2rem;
     border-radius: 5px;
     text-decoration: none;
@@ -107,13 +112,13 @@ body {
     color: white;
 }
 
-.cta-secondary {
-    background: transparent;
-    border: 2px solid white;
+
+.cta-appt {
+    background: #1a73e8;
     color: white;
 }
 
-.cta-primary:hover, .cta-secondary:hover {
+.cta-primary:hover, .cta-appt:hover {
     transform: translateY(-3px);
 }
 
@@ -453,102 +458,6 @@ footer {
     color: black;
 }
 
-/* Brands Section */
-.brands-section {
-    background: #f8f9fa;
-    padding: 4rem 5%;
-    text-align: center;
-}
-
-.brands-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 2rem auto 0;
-}
-
-.brand {
-    background: white;
-    padding: 1rem;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-}
-
-.brand img {
-    max-width: 150px;
-    height: auto;
-}
-
-/* Service Guarantees */
-.service-guarantees {
-    padding: 4rem 5%;
-    text-align: center;
-}
-
-.guarantees-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 2rem auto 0;
-}
-
-.guarantee {
-    padding: 2rem;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
-}
-
-.guarantee i {
-    font-size: 2.5rem;
-    color: black;
-    margin-bottom: 1rem;
-}
-
-/* Maintenance Cards */
-.maintenance-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-.maintenance-card {
-    background: #f8f9fa;
-    padding: 2rem;
-    border-radius: 10px;
-    text-align: center;
-}
-
-.maintenance-card i {
-    font-size: 2rem;
-    color: #1a73e8;
-    margin-bottom: 1rem;
-}
-
-.maintenance-card h3 {
-    margin-bottom: 1rem;
-}
-
-.learn-more {
-    display: inline-block;
-    margin-top: 1rem;
-    color: #1a73e8;
-    text-decoration: none;
-    font-weight: 500;
-}
-
-.learn-more i {
-    font-size: 0.8rem;
-    margin-left: 5px;
-}
-
 /* Warning Signs */
 .warning-signs {
     display: grid;
@@ -578,32 +487,6 @@ footer {
 .sign-icon i {
     font-size: 1.5rem;
     color: white;
-}
-
-/* Permit Info */
-.permit-card {
-    background: #f8f9fa;
-    padding: 2rem;
-    border-radius: 10px;
-}
-
-.permit-list {
-    list-style: none;
-    padding: 0;
-    margin-top: 1rem;
-}
-
-.permit-list li {
-    padding: 0.5rem 0;
-    padding-left: 1.5rem;
-    position: relative;
-}
-
-.permit-list li:before {
-    content: "•";
-    color: #1a73e8;
-    position: absolute;
-    left: 0;
 }
 
 /* Financing Options */
@@ -657,9 +540,87 @@ footer {
     background: #1557b0;
 }
 
+/* FullCalendar Styles */
+#calendar a {
+    color: inherit;
+    text-decoration: none;
+    cursor: default;
+}
+
+/* Appointment Styles */
+#calendar {
+    font-family: 'Aldrich', sans-serif;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.fc-toolbar-title {
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.fc-button {
+    background-color: black !important;
+    color: white !important;
+    border: none !important;
+    padding: 0.5rem 1rem !important;
+    border-radius: 5px !important;
+}
+
+.fc-button:hover {
+    background-color: #444 !important;
+}
+
+.fc-event {
+    background-color: #1557b0 !important;
+    color: white !important;
+    border: none !important;
+    font-weight: bold;
+}
+
+.fc-event-title {
+    font-weight: normal;
+}
+
+.fc-event.available {
+    background-color: #28a745 !important;  /* Green for available */
+    color: white !important;
+    font-weight: bold;
+}
+  
+.fc-event.booked {
+background-color: #0d6efd !important;  /* Blue for booked */
+color: white !important;
+}
+
+#calendar {
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+/* Add spacing between stacked calendar events */
+.fc .fc-daygrid-event-harness {
+    margin-bottom: 2px;  /* You can change to 1px if you want it tighter */
+}
+
+/* Hover effect for ALL events */
+.fc-event:hover {
+    filter: brightness(1.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    z-index: 10;
+}
+  
+
 /* Media Queries */
 @media (max-width: 768px) {
     .nav-links {
+        display: none;
+    }
+
+    .nav-phone {
         display: none;
     }
 
@@ -691,27 +652,15 @@ footer {
         grid-template-columns: 1fr;
     }
 
-    .brands-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .faq-container {
-        grid-template-columns: 1fr;
-    }
-
-    .faq-nav {
-        position: static;
-        margin-bottom: 2rem;
-    }
-
-    .comparison-table {
-        margin: 1rem -1rem;
-    }
-
     .financing-options {
         grid-template-columns: 1fr;
     }
+
+    .fc-toolbar-title {
+        font-size: 1.2rem;
+    }
 }
+
 
 @media (max-width: 480px) {
     .navbar {

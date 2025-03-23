@@ -1,19 +1,25 @@
 from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
 
 db = SQLAlchemy()
 
 class Appointment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(100), nullable=False, default="Available Slot")
-    start = db.Column(db.DateTime, nullable=False)  # ✅ Store as DateTime
+    title = db.Column(db.String(100), nullable=False)
+    start = db.Column(db.DateTime, nullable=False)
     booked = db.Column(db.Boolean, default=False)
 
+    # New fields
+    name = db.Column(db.String(100))
+    address = db.Column(db.String(200))
+    city = db.Column(db.String(100))
+    phone = db.Column(db.String(20))
+    email = db.Column(db.String(120))
+
     def to_dict(self):
-        """Convert model data to dictionary for JSON response"""
         return {
             'id': self.id,
-            'title': self.title if self.booked else "Available Slot",
-            'start': self.start.strftime("%Y-%m-%dT%H:%M:%S"),  # ✅ Format for FullCalendar
-            'color': '#ff0000' if self.booked else '#008000'  # Red if booked, green if available
+            'title': self.title,
+            'start': self.start.isoformat(),
+            'className': 'available' if self.title == "Available Slot" else 'booked'
         }
+
