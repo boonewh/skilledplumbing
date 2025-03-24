@@ -28,6 +28,8 @@ body {
     display: flex;
     margin: auto;
     width: 95%;
+    align-items: center;
+    justify-content: space-between; /* ✅ this spreads out logo and hamburger */
 }
 
 .logo h1 {
@@ -613,6 +615,42 @@ color: white !important;
     z-index: 10;
 }
   
+/* Mobile Menu Style */
+
+/* Hidden nav shown when toggled on mobile */
+.nav-links.mobile-show {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 1001;
+}
+
+.nav-links.mobile-show li {
+    text-align: center;
+    padding: 1rem;
+}
+
+/* Optional: Animate hamburger into "X" */
+.hamburger.open span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+.hamburger span {
+    transition: all 0.3s ease;
+}
 
 /* Media Queries */
 @media (max-width: 768px) {
