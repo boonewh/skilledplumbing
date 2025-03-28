@@ -14,6 +14,7 @@ class Appointment(db.Model):
     city = db.Column(db.String(100))
     phone = db.Column(db.String(20))
     email = db.Column(db.String(120))
+    heater_type = db.Column(db.String(100))
 
     def to_dict(self):
         return {

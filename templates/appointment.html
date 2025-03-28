@@ -43,6 +43,66 @@
               <label for="email" class="form-label">Email</label>
               <input type="email" class="form-control" id="email" required>
             </div>
+            <div class="mb-3">
+              <label class="form-label">What kind of water heater do you need?</label>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="heaterType" value="Traditional - Propane Gas" required>
+                <label class="form-check-label">30 gallon traditional - Propane</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="heaterType" value="Traditional - Gas" required>
+                <label class="form-check-label">30 gallon traditional - Natural Gas</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="heaterType" value="Traditional - Electric" required>
+                <label class="form-check-label">30 gallon traditional- Electric</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="heaterType" value="Traditional - Propane Gas" required>
+                <label class="form-check-label">40 gallon traditional - Propane</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="heaterType" value="Traditional - Gas" required>
+                <label class="form-check-label">40 gallon traditional - Natural Gas</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="heaterType" value="Traditional - Electric" required>
+                <label class="form-check-label">40 gallon traditional- Electric</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="heaterType" value="Traditional - Propane Gas" required>
+                <label class="form-check-label">50 gallon traditional - Propane</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="heaterType" value="Traditional - Gas" required>
+                <label class="form-check-label">50 gallon traditional - Natural Gas</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="heaterType" value="Traditional - Electric" required>
+                <label class="form-check-label">50 gallon traditional- Electric</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="heaterType" value="Traditional - Propane Gas" required>
+                <label class="form-check-label">75 gallon traditional - Propane</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="heaterType" value="Traditional - Gas" required>
+                <label class="form-check-label">75 gallon traditional - Natural Gas</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="heaterType" value="Traditional - Electric" required>
+                <label class="form-check-label">80 gallon traditional- Electric</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="heaterType" value="Tankless - Gas" required>
+                <label class="form-check-label">Tankless - Natural Gas</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="heaterType" value="Tankless - Propane" required>
+                <label class="form-check-label">Tankless - Propane</label>
+              </div>
+            </div>
+            
           </div>
           <div class="modal-footer">
             <button type="submit" class="btn btn-primary">Book Appointment</button>
@@ -85,11 +145,12 @@
         const city = document.getElementById('city').value;
         const phone = document.getElementById('phone').value;
         const email = document.getElementById('email').value;
+        const heaterType = document.querySelector('input[name="heaterType"]:checked').value;
 
         fetch('/book', {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({ id, name, address, city, phone, email })
+          body: JSON.stringify({ id, name, address, city, phone, email, heaterType })
         })
         .then(response => response.json())
         .then(data => {

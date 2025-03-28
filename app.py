@@ -63,6 +63,7 @@ def book_appointment():
         appointment.city = data['city']
         appointment.phone = data['phone']
         appointment.email = data['email']
+        appointment.end = appointment.start + timedelta(hours=1)  # Assuming 1 hour duration
         db.session.commit()
 
         # ✉️ Send appointment email
@@ -79,6 +80,7 @@ def book_appointment():
         City: {appointment.city}
         Phone: {appointment.phone}
         Email: {appointment.email}
+        Heater Type: {appointment.heater_type}
         Time: {appointment.start.strftime('%Y-%m-%d %I:%M %p')}
         """
         mail.send(msg)
