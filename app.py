@@ -63,16 +63,12 @@ def book_appointment():
         appointment.city = data['city']
         appointment.phone = data['phone']
         appointment.email = data['email']
-        appointment.end = appointment.start + timedelta(hours=1)  # Assuming 1 hour duration
+        appointment.heater_type = data['heaterType'] 
         db.session.commit()
 
-        # ✉️ Send appointment email
-        msg = Message(
-            subject="New Appointment Scheduled",
-            sender=app.config['MAIL_DEFAULT_SENDER'],
-            recipients=['boonewh@gmail.com']
-        )
-        msg.body = f"""
+        # Common email body
+        appointment_time = appointment.start.strftime('%Y-%m-%d %I:%M %p')
+        body = f"""
         A new appointment has been booked:
 
         Name: {appointment.name}
@@ -80,12 +76,50 @@ def book_appointment():
         City: {appointment.city}
         Phone: {appointment.phone}
         Email: {appointment.email}
-        Heater Type: {appointment.heater_type}
-        Time: {appointment.start.strftime('%Y-%m-%d %I:%M %p')}
+        Time: {appointment_time}
+        Water Heater Type: {appointment.heater_type if appointment.heater_type else 'Not specified'}
         """
-        mail.send(msg)
 
-        return jsonify({'status': 'success'})
+        try:
+            # 📤 Internal notification
+            internal_msg = Message(
+                subject="New Appointment Scheduled",
+                sender=app.config['MAIL_DEFAULT_SENDER'],
+                recipients=[
+                    'stephen@skilledwaterheater.com',
+                    'boonewh@pathsixdesigns.com'
+                ]
+            )
+            internal_msg.body = body
+            mail.send(internal_msg)
+
+            # 📤 Customer confirmation
+            customer_msg = Message(
+                subject="Appointment Confirmation - Skilled Plumbing",
+                sender=app.config['MAIL_DEFAULT_SENDER'],
+                recipients=[appointment.email]
+            )
+            customer_msg.body = f"""Hi {appointment.name},
+
+Thank you for scheduling your appointment with Skilled Plumbing!
+
+Here are the details of your appointment:
+
+Date & Time: {appointment_time}
+Address: {appointment.address}, {appointment.city}
+Phone: {appointment.phone}
+Water Heater Type: {appointment.heater_type if appointment.heater_type else 'Not specified'}
+
+If you have any questions, feel free call us at (432) 553-2702.
+
+- Skilled Plumbing Team
+"""
+            mail.send(customer_msg)
+
+            return jsonify({'status': 'success'})
+        except Exception as e:
+            print(f"Email error: {e}")
+            return jsonify({'status': 'error', 'message': 'Booking saved, but email failed.'}), 500
 
     return jsonify({'status': 'error', 'message': 'Appointment not available or already booked'}), 400
 

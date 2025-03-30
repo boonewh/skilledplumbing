@@ -3,10 +3,10 @@ from models import Appointment
 from datetime import datetime, timedelta
 
 def generate_appointments():
-    """Manually add Monday-Friday appointment slots from 8:00 AM to 3:00 PM for 30 days."""
+    """Manually add Monday-Friday appointment slots from 8:00 AM to 5:00 PM for 30 days."""
     with app.app_context():
         start_time = 8  # 8:00 AM
-        end_time = 15   # 3:00 PM
+        end_time = 18   # 6:00 PM
         days_in_future = 30  # Generate for 30 days ahead
 
         today = datetime.today()
