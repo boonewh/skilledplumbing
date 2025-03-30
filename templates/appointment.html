@@ -104,7 +104,10 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Book Appointment</button>
+            <button type="submit" class="btn btn-primary" id="submitBtn">
+              <span id="submitText">Book Appointment</span>
+              <span id="submitSpinner" class="spinner-border spinner-border-sm ms-2 d-none" role="status" aria-hidden="true"></span>
+            </button>
           </div>
         </form>
       </div>
@@ -116,6 +119,7 @@
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
 
+  <!-- Initialize FullCalendar -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       var calendarEl = document.getElementById('calendar');
@@ -123,7 +127,7 @@
       var calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
         events: '/api/appointments',
-        hiddenDays: isMobile ? [0, 6] : [], // 0=Sunday, 6=Saturday
+        hiddenDays: isMobile ? [0, 6] : [],
         eventClick: function (info) {
           if (info.event.title === "Available Slot") {
             document.getElementById('appointmentId').value = info.event.id;
@@ -135,9 +139,20 @@
         }
       });
       calendar.render();
-
-      document.getElementById('bookingForm').addEventListener('submit', function (e) {
+  
+      const bookingForm = document.getElementById('bookingForm');
+      const submitBtn = document.getElementById('submitBtn');
+      const submitText = document.getElementById('submitText');
+      const submitSpinner = document.getElementById('submitSpinner');
+  
+      bookingForm.addEventListener('submit', function (e) {
         e.preventDefault();
+  
+        // Spinner logic
+        submitBtn.disabled = true;
+        submitSpinner.classList.remove('d-none');
+        submitText.textContent = "Booking...";
+  
         const id = document.getElementById('appointmentId').value;
         const name = document.getElementById('name').value;
         const address = document.getElementById('address').value;
@@ -145,25 +160,37 @@
         const phone = document.getElementById('phone').value;
         const email = document.getElementById('email').value;
         const heaterType = document.querySelector('input[name="heaterType"]:checked').value;
-
+  
         fetch('/book', {
           method: 'POST',
-          headers: {'Content-Type': 'application/json'},
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ id, name, address, city, phone, email, heaterType })
         })
-        .then(response => response.json())
-        .then(data => {
-          if (data.status === 'success') {
-            alert("Appointment booked successfully!");
-            const modal = bootstrap.Modal.getInstance(document.getElementById('bookingModal'));
-            modal.hide();
-            calendar.refetchEvents();
-            document.getElementById('bookingForm').reset();
-          } else {
-            alert("Error: " + data.message);
-          }
-        });
+          .then(response => response.json())
+          .then(data => {
+            submitBtn.disabled = false;
+            submitSpinner.classList.add('d-none');
+            submitText.textContent = "Book Appointment";
+  
+            if (data.status === 'success') {
+              alert("Appointment booked successfully!");
+              const modal = bootstrap.Modal.getInstance(document.getElementById('bookingModal'));
+              modal.hide();
+              calendar.refetchEvents(); // ✅ Safely using outer calendar object
+              bookingForm.reset();
+            } else {
+              alert("Error: " + data.message);
+            }
+          })
+          .catch(error => {
+            console.error("Error:", error);
+            submitBtn.disabled = false;
+            submitSpinner.classList.add('d-none');
+            submitText.textContent = "Book Appointment";
+            alert("Something went wrong. Please try again.");
+          });
       });
     });
   </script>
+  
 {% endblock %}
