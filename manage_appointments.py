@@ -112,7 +112,7 @@ def add_new_day():
             
             # Add slots from 8am to 3pm
             start_time = 8  # 8:00 AM
-            end_time = 15   # 3:00 PM (15:00)
+            end_time = 18   # 6:00 PM (18:00)
             
             appointments_created = 0
             
