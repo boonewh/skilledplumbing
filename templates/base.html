@@ -5,6 +5,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% block meta %}{% endblock %}
     <meta name="author" content="PathSix Web Design">
+
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "Plumber",
+          "name": "Skilled Plumbing",
+          "image": "https://skilledwaterheater.com/static/images/traditional.jpg",
+          "url": "https://skilledwaterheater.com",
+          "telephone": "+1-432-553-2702",
+          "email": "stephen@skilledhotwater.com",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Odessa",
+            "addressLocality": "Odessa",
+            "addressRegion": "TX",
+            "postalCode": "",
+            "addressCountry": "US"
+          },
+          "openingHours": "Mo-Fr 08:00-17:00",
+          "areaServed": {
+            "@type": "Place",
+            "name": "Odessa, TX"
+          },
+          "sameAs": [
+            "https://www.facebook.com/p/Skilled-Plumbing-Odessa-Texas-100049956266347/"
+          ],
+          "priceRange": "$$",
+          "description": "Professional water heater installation and replacement services in Odessa, TX. Licensed and insured plumbers ready to serve you.",
+          "serviceType": "Water Heater Installation and Replacement",
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Water Heater Services",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Traditional Water Heater Installation"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Tankless Water Heater Installation"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Water Heater Replacement"
+                }
+              }
+            ]
+          },
+          "potentialAction": {
+            "@type": "ReserveAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://skilledwaterheater.com/appointment",
+              "inLanguage": "en",
+              "actionPlatform": [
+                "http://schema.org/DesktopWebPlatform",
+                "http://schema.org/MobileWebPlatform"
+              ]
+            },
+            "result": {
+              "@type": "Reservation",
+              "name": "Plumbing Appointment"
+            }
+          }
+        }
+    </script>
+
     <title>{% block title %}{% endblock %}</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
