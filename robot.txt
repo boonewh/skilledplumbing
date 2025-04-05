@@ -1,0 +1,4 @@
+ser-Agent: *
+Disallow: /?s
+
+Sitemap: https://www.skilledwaterheater.com/sitemap.xml
